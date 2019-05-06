@@ -7,9 +7,9 @@ export default class FileUploader extends React.Component {
 
     state = {
         account: 'Searching for account...', types: [
-            {name:'Certificate', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
-            {name:'Photo', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
-            {name:'Reciept', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
+            {name:'Certificate', className: 'bg-red-500 text-red-100 hover:bg-green-400 hover:text-white'},
+            {name:'Photo', className: 'bg-red-500 text-red-100 hover:bg-green-400 hover:text-white'},
+            {name:'Reciept', className: 'bg-red-500 text-red-100 hover:bg-green-400 hover:text-white'},
         ]
     }
 
@@ -27,8 +27,8 @@ export default class FileUploader extends React.Component {
         return false;
     }
 
-    async componentDidMount() {
-        this.setState({ account: (await account.details(this.props.match.params.foracid) || 'Account not found') })
+    componentDidMount() {
+        account.details(this.props.match.params.foracid).then(result=>this.setState({ account: result }))
     }
 
     render() {
@@ -40,8 +40,8 @@ export default class FileUploader extends React.Component {
         let account = this.state.account;
 
         return <div className="w-full">
-            <div className="border p-2 flex flex-wrap justify-between my-4 bg-white">
-                <h3 className="w-full border-b-2 mb-4 pb-2">Account Details</h3>
+            <div className="border p-2 px-4 flex flex-wrap justify-between my-4 bg-white">
+                <h3 className="w-full border-b-2 mb-4 pb-2 flex justify-between"><span>Account Details</span></h3>
                 <div className="flex flex-wrap justify-between w-full leading-loose">
                     <span>
                         {account.ACCT_NAME} <span className="text-gray-700"> ({account.FORACID})</span>
@@ -50,7 +50,7 @@ export default class FileUploader extends React.Component {
                         {account.SCHM_TYPE} <span className="text-gray-700"> - {account.SCHM_CODE}</span>
                     </span>
                 </div>
-                <div className="flex flex-wrap justify-between w-full">
+                <div className="flex flex-wrap justify-between w-full mb-4">
                     <span>Account Open Date: <span className="text-gray-700">{account.ACCT_OPN_DATE.substring(0, 10)}</span></span>
                     <span>Currency Code: <span className="text-gray-700">{account.ACCT_CRNCY_CODE}</span></span>
                 </div>

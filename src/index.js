@@ -21,11 +21,19 @@ window.alert = message => {
     Alert.info(message, {
         position: 'top-right',
         effect: 'jelly',
-        timeout: 'none'
+        timeout: 5000,
     });
 }
 
-ReactDOM.render(<><App /><Alert /></>, document.getElementById('root'));
+window.error = message => {
+    Alert.error(message, {
+        timeout: 5000,
+        position: 'top-right',
+        effect: 'jelly',
+    });
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
