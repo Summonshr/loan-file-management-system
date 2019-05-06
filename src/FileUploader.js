@@ -6,7 +6,7 @@ import Uploader from './Uploader'
 export default class FileUploader extends React.Component {
 
     state = {
-        account: 'loading', types: [
+        account: 'Searching for account...', types: [
             {name:'Certificate', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
             {name:'Photo', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
             {name:'Reciept', className: 'bg-red-300 hover:bg-green-400 hover:text-white'},
@@ -16,6 +16,11 @@ export default class FileUploader extends React.Component {
     constructor(props) {
         super(props)
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.getFiles = this.getFiles.bind(this)
+    }
+
+    getFiles(){
+        this.setState({files: ['A','B','C']})
     }
 
     async componentWillMount() {

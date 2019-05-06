@@ -20,8 +20,8 @@ export default class Home extends React.Component {
         if(!this.state.search || this.state.search.lenth < 5){
             return;
         }
-
-        Axios.post('http://localhost:3030/select', { query: "Select foracid, schm_code, acct_name from tbaadm.gam where del_flg = 'N' and schm_type = 'LAA' and acct_ownership ='C' and foracid = '" + this.state.search + "'" })
+        Axios
+        .post('http://localhost:3030/account-details', { search: this.state.search })
         .then(response=>this.setState({accounts: response.data.rows}))
     }
 
@@ -31,7 +31,7 @@ export default class Home extends React.Component {
             {this.state.accounts.length > 0 && <div className="w-full">
                 <ul>
                     {this.state.accounts.map(account => <li className="w-full p-2 my-1 bg-blue-500 hover:bg-blue-600" key={account.FORACID}>
-                        <Link to={'/loans/'+this.state.search} className="block text-white">
+                        <Link to={'/loans/'+account.FORACID} className="block text-white">
                         {account.SCHM_CODE} - {account.FORACID} - {account.ACCT_NAME} 
                         </Link>
                     </li>)}
