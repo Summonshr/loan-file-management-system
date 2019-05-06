@@ -21,7 +21,7 @@ export default class Home extends React.Component {
             return;
         }
         Axios
-        .post('http://localhost:3030/account-details', { search: this.state.search })
+        .post('account-details', { search: this.state.search })
         .then(response=>this.setState({accounts: response.data.rows}))
     }
 
