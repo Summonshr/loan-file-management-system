@@ -15,7 +15,6 @@ function App() {
 							</Link>
 						</div>
 						<Route path="/" component={Search} />
-
 					</div>
 				</div>
 				<div className="container mx-auto">
