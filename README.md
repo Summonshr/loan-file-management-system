@@ -11,3 +11,4 @@ The project includes only client side part of the project and implements followi
  * react-dropzone
  * react-router-dom
  * react-s-alert
+ * tailwindcss
